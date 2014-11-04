@@ -17,7 +17,7 @@
 package org.jboss.aerogear.unifiedpush.message.sender;
 
 
-import org.jboss.aerogear.unifiedpush.api.iOSVariant;
+import org.jboss.aerogear.unifiedpush.api.APNsVariant;
 import org.jboss.aerogear.unifiedpush.message.UnifiedPushMessage;
 import org.junit.Test;
 
@@ -37,11 +37,11 @@ public class APNsPushNotificationSenderTest {
         final APNsPushNotificationSender sender = new APNsPushNotificationSender();
         final NotificationSenderCallback callback = mock(NotificationSenderCallback.class);
         
-        final iOSVariant iosVariant = mock(iOSVariant.class);
-        when(iosVariant.getCertificate()).thenReturn(readCertificate());
-        when(iosVariant.getPassphrase()).thenReturn("123456");
+        final APNsVariant APNsVariant = mock(APNsVariant.class);
+        when(APNsVariant.getCertificate()).thenReturn(readCertificate());
+        when(APNsVariant.getPassphrase()).thenReturn("123456");
         
-        sender.sendPushMessage(iosVariant, Arrays.asList("token"), mock(UnifiedPushMessage.class), callback);
+        sender.sendPushMessage(APNsVariant, Arrays.asList("token"), mock(UnifiedPushMessage.class), callback);
         
         verify(callback).onError("Error sending payload to APNs server: Invalid hex character: t");
     }
